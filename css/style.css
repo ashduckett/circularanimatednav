@@ -1,0 +1,181 @@
+/* Browser reset - normalize.css is not required anymore */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+html {
+  /* Override the root font size so rems can be used more easily. 62.5% is what 10px is as a % of 16px */
+  font-size: 62.5%; }
+
+body {
+  /* font-size: 16px; */
+  /* Also set font-family, font-weight, line-height and font colour here. */
+  box-sizing: border-box;
+  font-family: 'Gothic A1', sans-serif; }
+
+.homepageOpener {
+  background-color: green;
+  height: 100vh; }
+
+@keyframes shiftHideMenu {
+  0% {
+    transform: translateX(0);
+    pointer-events: all;
+    visibility: visible; }
+  100% {
+    transform: translateX(50px);
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden; } }
+
+@keyframes shiftShowMenu {
+  0% {
+    transform: translateX(50px);
+    opacity: 0;
+    visibility: hidden; }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: all;
+    visibility: visible; } }
+
+@keyframes shiftShowMobileMenu {
+  0% {
+    transform: translateX(50px);
+    opacity: 0; }
+  100% {
+    transform: translateX(0);
+    opacity: 1; } }
+
+.nav {
+  position: fixed;
+  height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4rem; }
+  .nav__menu {
+    list-style-type: none;
+    display: flex;
+    align-items: center; }
+    .nav__menu--hidden {
+      pointer-events: none; }
+      .nav__menu--hidden .nav__menu-item--hidden {
+        animation-name: shiftHideMenu;
+        animation-duration: .3s;
+        animation-fill-mode: forwards; }
+  .nav__menu-item {
+    display: inline-block; }
+    .nav__menu-item-link {
+      font-size: 1.5rem;
+      text-decoration: none;
+      color: white;
+      position: relative; }
+      .nav__menu-item-link:after {
+        content: '';
+        height: 2px;
+        position: absolute;
+        background-color: red;
+        width: 0;
+        left: 0;
+        top: calc(100% + 2px);
+        transition: width .4s; }
+      .nav__menu-item-link:hover:after {
+        width: 100%; }
+    .nav__menu-item:not(:nth-last-child(3)) {
+      margin-right: 4rem; }
+    .nav__menu-item--show {
+      animation-name: shiftShowMenu;
+      animation-duration: .3s;
+      animation-fill-mode: backwards; }
+      .nav__menu-item--show.hamburger {
+        display: inline-block; }
+
+.nav__menu-item--hidden {
+  animation-name: shiftHideMenu;
+  animation-duration: .3s;
+  animation-fill-mode: forwards; }
+
+.hamburger {
+  transition: all 1s ease;
+  position: absolute;
+  left: 100%;
+  z-index: 2;
+  cursor: pointer; }
+  .hamburger.isActive .hamburger__altMenuContainer--show {
+    height: 5000px;
+    width: 5000px;
+    pointer-events: none; }
+  .hamburger--visible {
+    transform: translateX(calc(-100% - 4rem)); }
+  .hamburger .line {
+    width: 40px;
+    height: 2px;
+    display: block;
+    background-color: white;
+    border-radius: 10px;
+    margin: 6px auto;
+    transition: all .3s ease-in-out; }
+  .hamburger.isActive .line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg); }
+  .hamburger.isActive .line:nth-child(2) {
+    opacity: 0; }
+  .hamburger.isActive .line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg); }
+
+.hamburger__altMenuContainer {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: all .4s;
+  background-color: black;
+  height: 0;
+  width: 0;
+  border-radius: 50%;
+  z-index: -1; }
+
+.content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: white; }
+
+.altMenuItems {
+  pointer-events: none;
+  display: none;
+  z-index: 5;
+  color: white;
+  position: absolute;
+  left: 50vw;
+  top: 50vh;
+  transform: translate(-50%, -50%);
+  font-size: 6rem; }
+  .altMenuItems a {
+    color: white;
+    text-decoration: none; }
+
+.altMenuItems--shown {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center; }
+
+li.nav__mobileMenuItem {
+  animation-name: shiftShowMobileMenu;
+  animation-duration: .3s;
+  animation-fill-mode: backwards;
+  width: 100%; }
+  li.nav__mobileMenuItem a {
+    pointer-events: all; }
+
+body {
+  background-color: #1e1e1e; }
+
+.something {
+  height: 900rem; }
